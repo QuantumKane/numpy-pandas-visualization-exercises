@@ -2,18 +2,17 @@
 # How many negative numbers are there?
 
 negative_nums = a[a < 0]
-negative_nums
+len(negative_nums)
 
 # How many positive numbers are there?
 
 positive_nums = a[a > 0]
-positive_nums
-
+len(positive_nums)
 
 # How many even positive numbers are there?
 
-even_positive_nums = positive_nums % 2 == 0
-even_positive_nums
+even_positive_nums = positive_nums[positive_nums % 2 == 0]
+len(even_positive_nums)
 
 # If you were to add 3 to each data point, how many positive numbers would there be?
 
@@ -47,38 +46,38 @@ z_score
 
 # Exercise 1 - Make a variable called sum_of_a to hold the sum of all the numbers in above list
 
-sum_of_a = a.sum()
-a.sum()
+sum(a)
 
 # Exercise 2 - Make a variable named min_of_a to hold the minimum of all the numbers in the above list
 
-min_of_a = a.min()
-min_of_a
+min(a)
 
 # Exercise 3 - Make a variable named max_of_a to hold the max number of all the numbers in the above list
 
-max_of_a = a.max()
-max_of_a
+max(a)
 
 # Exercise 4 - Make a variable named mean_of_a to hold the average of all the numbers in the above list
 
-mean_of_a = a.mean()
-mean_of_a
+sum(a) / len(a)
 
 # Exercise 5 - Make a variable named product_of_a to hold the product of multiplying all the numbers in the above list together
 
-
+total = 1
+for num in a:
+    total += num
+total
 
 # Exercise 6 - Make a variable named squares_of_a. It should hold each number in a squared like [1, 4, 9, 16, 25...]
 
+[num ** 2 for num in a]
 
 # Exercise 7 - Make a variable named odds_in_a. It should hold only the odd numbers
 
-
+[num for num in a if num % 2 == 1]
 
 # Exercise 8 - Make a variable named evens_in_a. It should hold only the evens.
 
-
+[num for num in a if num % 2 == 0]
 
 ## Setup 2: Consider what it would take to find the sum, min, max, average, sum, product, and list of squares for this list of two lists.
 b = [
@@ -86,9 +85,10 @@ b = [
     [6, 7, 8]
 ]
 
+# Turning list(s) b into numpy array
 b = np.array(b)
 
-# Exercise 1 - Use sum_of_b as the variable. **Hint, you'll first need to make sure that the "b" variable is a numpy array**
+# Exercise 1 - Use sum_of_b as the variable.
 sum_of_b = 0
 for row in b:
     sum_of_b += sum(row)
@@ -166,8 +166,106 @@ np.shape(b)
 
 np.transpose(b)
 
+b.T
+
 # Exercise 11 - reshape the array b to be a single list of 6 numbers. (1 x 6)
 
+b.reshape(-1)
 
+b.shape(6)
 
 # Exercise 12 - reshape the array b to be a list of 6 lists, each containing only 1 number (6 x 1)
+
+b.reshape(6, 1)
+
+
+## Setup 3
+c = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# HINT, you'll first need to make sure that the "c" variable is a numpy array prior to using numpy array methods.
+# Exercise 1 - Find the min, max, sum, and product of c.
+
+c = np.array(c)
+c.describe
+
+# Exercise 2 - Determine the standard deviation of c.
+
+np.std(c)
+
+# Exercise 3 - Determine the variance of c.
+
+
+
+# Exercise 4 - Print out the shape of the array c
+
+c.shape
+
+# Exercise 5 - Transpose c and print out transposed result.
+
+c.T
+
+# Exercise 6 - Get the dot product of the array c with c. 
+
+np.dot(c, c).sum()
+
+# Exercise 7 - Write the code necessary to sum up the result of c times c transposed. Answer should be 261
+
+(c * c.T).sum()
+
+# Exercise 8 - Write the code necessary to determine the product of c times c transposed. Answer should be 131681894400.
+
+(c * c.T).prod()
+
+
+
+## Setup 4
+d = [
+    [90, 30, 45, 0, 120, 180],
+    [45, -90, -30, 270, 90, 0],
+    [60, 45, -45, 90, -45, 180]
+]
+
+# Exercise 1 - Find the sine of all the numbers in d
+
+np.sin(d)
+
+# Exercise 2 - Find the cosine of all the numbers in d
+
+np.cos(d)
+
+# Exercise 3 - Find the tangent of all the numbers in d
+
+np.tan(d)
+
+# Exercise 4 - Find all the negative numbers in d
+
+d = np.array(d)
+d[d < 0]
+
+# Exercise 5 - Find all the positive numbers in d
+
+d[d > 0]
+
+# Exercise 6 - Return an array of only the unique numbers in d.
+
+np.unique(d)
+
+# Exercise 7 - Determine how many unique numbers there are in d.
+
+np.unique(d)
+
+# Exercise 8 - Print out the shape of d.
+
+d.shape
+
+# Exercise 9 - Transpose and then print out the shape of d.
+
+d.T.shape
+
+# Exercise 10 - Reshape d into an array of 9 x 2
+
+d.reshape(9, 2)
