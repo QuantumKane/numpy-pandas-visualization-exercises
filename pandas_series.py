@@ -1,7 +1,6 @@
 
 #1. Use pandas to create a Series
 
-
 #a) Name the variable that holds the series fruits.
 
 fruits = ["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", "gooseberry", "papaya"]
@@ -119,11 +118,16 @@ exam_series
 
 #a) What is the minimum exam score? The max, mean, median?
 
-
+exam_series.describe()
 
 #b) Plot a histogram of the scores.
 
+exam_series.plot.hist(color = 'seagreen',
+                     ec = 'black')
 
+plt.title('Score Distribution')
+plt.xlabel('Scores')
+plt.show()
 
 # c) Convert each of the numbers above into a letter grade.
 
@@ -131,3 +135,40 @@ exam_series
 
 # d) Write the code necessary to implement a curve.
 
+curve = 100 - exam_series.max()
+curve
+
+
+#4. Use pandas to create a Series
+
+string = 'hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'
+
+letters_list = ' '.join(string).split(' ')
+letters = pd.Series(letters_list)
+
+#a) What is the most frequently occuring letter? Least frequently occuring?
+
+letters.value_counts().sort_values(ascending=False)
+
+#b) How many vowels are in the list?
+
+letters.str.lower().str.count(r'[aeiou]').sum()
+
+#c) How many consonants are in the list?
+
+letters.str.lower().str.count(r'[^aeiou]').sum()
+
+#d) Create a series that has all of the same letters, but uppercased
+
+letters.str.upper()
+
+#e) Create a bar plot of the frequencies of the 6 most frequently occuring letters.
+
+letters.value_counts().head(7).plot.barh(color = 'royalblue',
+                                        ec = 'black',
+                                        width = .8)
+    
+plt.title('Most Frequently Occuring Letters')
+plt.gca().invert_yaxis()
+
+plt.show()
