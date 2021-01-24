@@ -19,7 +19,6 @@ len(even_positive_nums)
 add_three = a + 3
 add_three, add_three % 2 == 0
 
-
 # If you squared each number, what would the new mean and standard deviation be?
 
 num_sqrd = a ** 2
@@ -190,7 +189,7 @@ c = [
 # Exercise 1 - Find the min, max, sum, and product of c.
 
 c = np.array(c)
-c.describe
+
 
 # Exercise 2 - Determine the standard deviation of c.
 
@@ -198,7 +197,7 @@ np.std(c)
 
 # Exercise 3 - Determine the variance of c.
 
-
+np.var(c)
 
 # Exercise 4 - Print out the shape of the array c
 
