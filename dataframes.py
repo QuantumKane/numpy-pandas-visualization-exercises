@@ -33,7 +33,7 @@ df.sort_values(by = ['passing_english', 'english'])
 
 #e. Calculate each students overall grade and add it as a column on the dataframe. The overall grade is the average of the math, english, and reading grades.
 
-df['overall_grade'] = df['math'] + df['english'] + df['reading'] / 3
+df['overall_grade'] = round(df.loc[:, 'math': 'reading'].sum(axis=1) / 3)
 
 
 

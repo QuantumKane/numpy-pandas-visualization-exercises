@@ -190,7 +190,6 @@ c = [
 
 c = np.array(c)
 
-
 # Exercise 2 - Determine the standard deviation of c.
 
 np.std(c)
