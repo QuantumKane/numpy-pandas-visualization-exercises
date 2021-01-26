@@ -21,7 +21,7 @@ df['passing_english'] = df.english > 70
 #b. Sort the english grades by the passing_english column. How are duplicates handled?
 
 df.sort_values(by='passing_english')
-# Not sure what the duplicates question is asking....?
+# Sorted first by False/True, then by index
 
 #c. Sort the english grades first by passing_english and then by student name. All the students that are failing english should be first, and within the students that are failing english they should be ordered alphabetically. The same should be true for the students passing english. (Hint: you can pass a list to the .sort_values method)
 
@@ -46,7 +46,7 @@ data('mpg', show_doc=True)
 
 #b. What are the data types of each column?
 
-mpg.info()
+mpg.dtypes
 
 #c. Summarize the dataframe with .info and .describe
 
@@ -77,18 +77,28 @@ mpg.head()
 
 mpg.sort_values(by='mileage_difference', ascending=False)
 
-#i Which compact class car has the lowest highway mileage? The best?
+#i Which compact class car has the lowest highway mileage? 
 
+bool_series = mpg['class'] == 'compact'
+compacts = mpg[bool_series]
+compacts.nsmallest(1, 'highway', keep='all')
 
+# The best?
+compacts.nlargest(1, 'highway', keep='all')
 
 #j Create a column named average_mileage that is the mean of the city and highway mileage.
 
 mpg['average_mileage'] = (mpg['highway'] + mpg['city']) / 2
 mpg.head()
 
-#l Which Dodge car has the best average mileage? The worst?
+#l Which Dodge car has the best average mileage? 
 
+bool_series = mpg.manufacturer == 'dodge'
+dodges = mpg[bool_series]
+dodges.nlargest(1, 'average_mileage', keep='all')
 
+# The worst?
+dodges.nsmallest(1, 'average_mileage', keep='all')
 
 
 ##3 Load the Mammals dataset. Read the documentation for it, and use the data to answer these questions:
@@ -97,11 +107,11 @@ mammals = data('Mammals')
 
 #a. How many rows and columns are there?
 
-mammals.info()
+mammals.shape
 
 #b. What are the data types?
 
-mammals.info()
+mammals.dtypes
 
 #c. Summarize the dataframe with .info and .describe
 
@@ -111,10 +121,14 @@ mammals.describe()
 
 #d. What is the the weight of the fastest animal?
 
-mammals.sort_values(by = 'speed', ascending=False)
+mammals.sort_values(by = 'speed', ascending = False)
 
 #e. What is the overall percentage of specials?
 
-
+total_specials = mammals.specials.sum()
+total_mammals = len(mammals)
+round(total_specials / total_mammals * 100, 2)
 
 #f. How many animals are hoppers that are above the median speed? What percentage is this?
+
+mammals[(mammals.hoppers == True) & (mammals.speed > np.median(mammals.speed))]
