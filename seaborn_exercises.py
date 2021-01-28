@@ -35,23 +35,19 @@ plt.ylabel('Sepal Width')
 
 # Which features would be best used to predict species?
 
-
+sns.boxplot(y = 'sepal_length', x = 'species_id', data = iris_measure)
 
 ##1 Using the lesson as an example, use seaborn's load_dataset function to load the anscombe data set.
-
-import seaborn as sns
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from pydataset import data
 
 anscombe = sns.load_dataset('anscombe')
 
 # Use pandas to group the data by the dataset column, and calculate summary statistics for each dataset. What do you notice?
 
-
+anscombe.groupby('dataset').describe()
 
 # Plot the x and y values from the anscombe data. Each dataset should be in a separate column.
+
+sns.lmplot(data = anscombe, x = 'x', y = 'y', col = 'dataset')
 
 
 ##2 Load the InsectSprays dataset and read it's documentation. 
@@ -80,10 +76,22 @@ sns.jointplot(data = swiss, x = 'Fertility', y = 'Catholic', hue = 'is_catholic'
 
 # What measure correlates most strongly with fertility?
 
+sns.pairplot(data = swiss.iloc[:, :-1])
 
 
 ##4 Using the chipotle dataset from the previous exercise, create a bar chart that shows the 4 most popular items and the revenue produced by each.
 
+get_db_url = f'mysql+pymysql://{user}:{password}@{host}/chipotle'
+    
+query = """
+    SELECT * FROM orders
+"""
+chipotle = pd.read_sql(query, get_db_url)
+
+chipotle['item_price'] = chipotle.item_price.str.replace('$', '').astype(float)
+
+top_4 = chipotle.groupby('item_name')[['quantity', 'item_price']].sum().nlargest(4, ['quantity'], keep = "all")
+top_4.item_price.sort_values(ascending = False).plot.bar()
 
 
 ##5 Load the sleepstudy data and read it's documentation.
