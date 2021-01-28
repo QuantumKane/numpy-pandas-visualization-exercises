@@ -1,10 +1,11 @@
 
 # Use the iris database to answer the following quesitons:
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pydataset import data
 
 get_db_url = f'mysql+pymysql://{user}:{password}@{host}/iris_db'
     
@@ -55,24 +56,27 @@ anscombe = sns.load_dataset('anscombe')
 
 ##2 Load the InsectSprays dataset and read it's documentation. 
 
-sprays = data('InsectSprays', show_doc = True)
+sprays = data('InsectSprays')
+data('InsectSprays', show_doc = True)
 
 # Create a boxplot that shows the effectiveness of the different insect sprays.
 
-
+sns.boxplot(data = sprays, x = 'count', y = 'spray')
 
 ##3 Load the swiss dataset and read it's documentation.
 
-swiss = data('swiss', show_doc = True)
+swiss = data('swiss')
+data('swiss', show_doc = True)
 
 # Create visualizations to answer the following questions:
 # Create an attribute named is_catholic that holds a boolean value of whether or not the province is Catholic. (Choose a cutoff point for what constitutes catholic)
 
-
+swiss['is_catholic'] = (swiss['Catholic'] > 40)
+swiss.head(10)
 
 # Does whether or not a province is Catholic influence fertility?
 
-
+sns.jointplot(data = swiss, x = 'Fertility', y = 'Catholic', hue = 'is_catholic')
 
 # What measure correlates most strongly with fertility?
 
@@ -82,7 +86,12 @@ swiss = data('swiss', show_doc = True)
 
 
 
-##5 Load the sleepstudy data and read it's documentation. Use seaborn to create a line chart of all the individual subject's reaction times and a more prominant line showing the average change in reaction time.
+##5 Load the sleepstudy data and read it's documentation.
+
+sleep_study = data('sleepstudy')
+data('sleepstudy', show_doc = True)
+
+# Use seaborn to create a line chart of all the individual subject's reaction times and a more prominant line showing the average change in reaction time.
 
 
 
