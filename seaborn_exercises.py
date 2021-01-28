@@ -101,5 +101,8 @@ data('sleepstudy', show_doc = True)
 
 # Use seaborn to create a line chart of all the individual subject's reaction times and a more prominant line showing the average change in reaction time.
 
+plt.figure(figsize=(16, 9))
 
+sns.lineplot(data = sleep_study, x = 'Days', y = 'Reaction', hue = 'Subject')
+sns.lineplot(data = sleep_study, x = 'Days', y = 'Reaction', color = 'black', estimator = 'mean')
 
