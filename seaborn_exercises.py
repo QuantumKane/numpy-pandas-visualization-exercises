@@ -27,25 +27,45 @@ plt.ylabel('Petal Width')
 
 # Would it be reasonable to predict species based on sepal width and sepal length?
 
-
+sns.regplot(x='sepal_length', y='sepal_width', data=iris_measure)
+plt.title('Sepal Length vs Sepal Width')
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
 
 # Which features would be best used to predict species?
 
 
 
-##1 Using the lesson as an example, use seaborn's load_dataset function to load the anscombe data set. Use pandas to group the data by the dataset column, and calculate summary statistics for each dataset. What do you notice?
+##1 Using the lesson as an example, use seaborn's load_dataset function to load the anscombe data set.
+
+import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pydataset import data
+
+anscombe = sns.load_dataset('anscombe')
+
+# Use pandas to group the data by the dataset column, and calculate summary statistics for each dataset. What do you notice?
+
+
 
 # Plot the x and y values from the anscombe data. Each dataset should be in a separate column.
 
 
-##2 Load the InsectSprays dataset and read it's documentation. Create a boxplot that shows the effectiveness of the different insect sprays.
+##2 Load the InsectSprays dataset and read it's documentation. 
+
+sprays = data('InsectSprays', show_doc = True)
+
+# Create a boxplot that shows the effectiveness of the different insect sprays.
 
 
 
-##3 Load the swiss dataset and read it's documentation. Create visualizations to answer the following questions:
+##3 Load the swiss dataset and read it's documentation.
 
+swiss = data('swiss', show_doc = True)
 
-
+# Create visualizations to answer the following questions:
 # Create an attribute named is_catholic that holds a boolean value of whether or not the province is Catholic. (Choose a cutoff point for what constitutes catholic)
 
 
