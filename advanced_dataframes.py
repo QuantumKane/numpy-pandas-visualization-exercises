@@ -59,8 +59,10 @@ pd.merge(users, roles, left_on='role_id', right_on='id', how='outer')
 ##3 Getting data from SQL databases
 
 #a. Create a function named get_db_url. It should accept a username, hostname, password, and database name and return a url formatted like in the examples in this lesson.
+from env import host, password, user
 
-get_db_url = f'mysql+pymysql://{user}:{password}@{host}/employees'
+def get_db_url(db, user=user, host=host, password=password):
+    return f'mysql+pymysql://{user}:{password}@{host}/{db}'
     
 #b. Use your function to obtain a connection to the employees database.
 
