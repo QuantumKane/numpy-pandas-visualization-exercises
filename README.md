@@ -16,3 +16,5 @@ This is my repo for Codeup's Visualization and DS libraries module. The repo con
 ## What is seaborn?
 - Seaborn is a library for making statistical graphics in Python. It builds on top of matplotlib and integrates closely with pandas data structures. Seaborn helps you explore and understand your data. Its plotting functions operate on dataframes and arrays containing whole datasets and internally perform the necessary semantic mapping and statistical aggregation to produce informative plots. Its dataset-oriented, declarative API lets you focus on what the different elements of your plots mean, rather than on the details of how to draw them. - [seaborn.pydata.org](https://seaborn.pydata.org/introduction.html)
 
+## What is Big O notation?
+- Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows. - [Wikipedia](https://en.wikipedia.org/wiki/Big_O_notation)
